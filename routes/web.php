@@ -14,9 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('visual', function () {
-    return view('visual');
-});
-Route::get('sociallogin', function () {
-    return view('sociallogin');
-});

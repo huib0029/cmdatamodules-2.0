@@ -9,7 +9,6 @@
 	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
   <link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/fresh-bootstrap-table.css" rel="stylesheet" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -34,12 +33,6 @@
               <ul class="nav navbar-nav">
                 <li class="{{ (Request::is('/') ? 'active' : '') }}">
                   <a href="{{ url('') }}"> Welkom</a>
-                </li>
-								<li class="{{ (Request::is('visual') ? 'active' : '') }}">
-                  <a href="{{ url('visual') }}"> Visual Studenten</a>
-                </li>
-								<li class="{{ (Request::is('sociallogin') ? 'active' : '') }}">
-                  <a href="{{ url('sociallogin') }}"> Social login test</a>
                 </li>
               </ul>
 
