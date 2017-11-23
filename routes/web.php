@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('api', function () {
+    return view('api');
+});
+Route::get('angular', function () {
+    return view('angular');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
