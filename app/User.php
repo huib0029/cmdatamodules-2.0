@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    // taken worden opgeroepen van de task.php constructor/model    	
+        public function tasks()
+        {
+            return $this->hasMany(Task::class, 'user_id');
+        }
 }

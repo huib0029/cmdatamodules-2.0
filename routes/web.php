@@ -24,3 +24,6 @@ Route::get('angular', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Alles van de task pagina wordt geladen naar de taskcontroller
+Route::resource('/task', 'TaskController');
