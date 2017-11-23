@@ -25,17 +25,16 @@
               <a class="navbar-brand" href="#">
                   <img src="https://hz.nl/assets/svg/hz-logo.svg">
               </a>
-              <a class="navbar-brand" href="#">
-                  <strong> &nbsp; Competentiemanager - Datamodule </strong>
-              </a>
           </div>
-          <div class="navbar-collapse collapse" id="navbar">
+					<a class="navbar-brand navbar-right" href="#">
+							<strong> &nbsp; Competentiemanager - Datamodule </strong>
+					</a>
+					<div class="navbar-collapse collapse" id="navbar">
               <ul class="nav navbar-nav">
                 <li class="{{ (Request::is('/') ? 'active' : '') }}">
                   <a href="{{ url('') }}"> Welkom</a>
                 </li>
               </ul>
-
           </div>
       </div>
   </nav>
