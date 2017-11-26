@@ -23,7 +23,13 @@ Route::get('angular', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// name -> route naar index
+Route::get('/home', 'HomeController@index')->name('index');
+// callback pagina aangemaakt in web URL
+Route::get('/callback', 'Controller@callback')->name('callback');
 
 // Alles van de task pagina wordt geladen naar de taskcontroller
 Route::resource('/task', 'TaskController');
+
+// Redirecten naar login pagina van OpenIDConnect
+Route::get('openidconnect', 'Controller@openlogin');

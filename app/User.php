@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'sub', 'name', 'email', 'picture',  'password',
     ];
 
     /**
@@ -24,11 +24,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+       'sub',  'password', 'remember_token',
     ];
-    // taken worden opgeroepen van de task.php constructor/model    	
-        public function tasks()
-        {
+    // taken worden opgeroepen van de task.php constructor/model
+    public function tasks()
+    {
             return $this->hasMany(Task::class, 'user_id');
-        }
+    }
 }
