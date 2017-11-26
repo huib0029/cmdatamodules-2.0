@@ -6,12 +6,16 @@
 
 @section('content')
 
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+<div class="title m-b-md">
+                    @auth
+                        {{ Auth::user()->name }}
+                        <p>{{ Auth::user()->email }}</p>
+                        @if (Auth::user()->picture)
+                            <p><img src="{{ Auth::user()->picture }}"></p>
+                        @endif
+                    @else
+                        OpenID Connect
+                    @endauth
+                </div>
 
 @endsection
