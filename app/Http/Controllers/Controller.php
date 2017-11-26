@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// Benodigde libraries
 use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Model;
-
+// JSON berichten decoden:
 use function GuzzleHttp\json_decode;
 use InvalidArgumentException;
 use Jose\Factory\JWKFactory;
@@ -25,13 +26,14 @@ use Jose\Loader;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+// functie openlogin waarin verwezen wordt, dit moet leiden naar een URL, zie web.php
     public function openlogin(): View
 {
+  // Als sessie van openid al is aangemaakt hoeft er geen nieuwe sessie aangemaakt te worden
     if (!session()->has('openid.state')) {
         session()->put('openid.state', str_random(32));
     }
-
+// Maakt een sessie aan met de endpoint gegevens van Google
     session()->put('openid.nonce', str_random(32));
 
     $endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
@@ -47,17 +49,18 @@ class Controller extends BaseController
         "&redirect_uri={$redirectUri}" .
         "&state={$state}" .
         "&nonce={$nonce}";
-
+// neemt de gegevens van variabel link mee met de return view van auth.openidconnect blade, een $link kan aangesproken worden d.m.v. een knop of link
     return view('auth.openidconnect')->with(['link' => $link]);
 }
-
+// Callback functie nadat gegevens van Google worden teruggestuurd naar de client
 public function callback(Request $request)
 {
+  // Indien er een timeout is tussen de relatie laat dan een timeout zien
     if ($request->input('state') !== session('openid.state')) {
-        return redirect()->route('index')->withErrors(['state' => 'De waarde van de parameter state is ongeldig.']);
+        return redirect()->route('index')->withErrors(['state' => 'timeout in relatie tussen client en server.']);
     }
 
-    // The Discovery document for Google's OpenID Connect.
+    // haal het Discovery document van Google's OpenID Connect op.
     $client = new Client();
     $response = $client->get('https://accounts.google.com/.well-known/openid-configuration');
     $discoveryDocument = json_decode($response->getBody());
@@ -71,7 +74,7 @@ public function callback(Request $request)
             'grant_type' => 'authorization_code'
         ]
     ]);
-
+    // Haal autorisatie token op en voeg er 10 minuten autorisatie tijd aan toe
     $tokens = json_decode($response->getBody());
 
     $expiresAt = Carbon::now()->addMinutes(10);
@@ -80,10 +83,10 @@ public function callback(Request $request)
 
         return $jwk_set;
     });
-
+    // laad een lader
     $loader = new Loader();
     $signature_index = null;
-
+    // Probeer een signature op te halen door een token en de juist keyset
     try {
         $jws = $loader->loadAndVerifySignatureUsingKeySet(
             $tokens->id_token,
@@ -92,9 +95,9 @@ public function callback(Request $request)
             $signature_index
         );
     } catch (InvalidArgumentException $exception) {
-        return redirect()->route('index')->withErrors(['id_token' => 'Ongeldige id token']);
+        return redirect()->route('index')->withErrors(['id_token' => 'Kan geen signature ophalen']);
     }
-
+    // Genereer autorisatietoken
     $idToken = collect($jws->getPayload());
     $issNotValid = !in_array($idToken->get('iss'), ['https://accounts.google.com', 'accounts.google.com']);
     $audNotValid = $idToken->get('aud') !== env('GOOGLE_CLIENT_ID');
@@ -103,7 +106,7 @@ public function callback(Request $request)
     if ($issNotValid || $audNotValid || $expNotValid) {
         return redirect()->route('index')->withErrors(['id_token' => 'Ongeldige id token']);
     }
-
+    // Voeg autorisatietoken toe en maak een nieuwe user aan, haal gegevens op d.m.v. de autorisatietoken
     $user = (new User)->updateOrCreate([
         'sub' => $idToken->get('sub')
     ], [
