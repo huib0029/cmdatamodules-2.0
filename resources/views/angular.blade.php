@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+@guest
+Je moet inloggen om de pagina te kunnen bekijken
+@else
 <div class="container" ng-controller="TaskController">
         <div class="row">
             <div class="col-md-12">
@@ -119,6 +122,7 @@
        </div><!-- /.modal -->
 
     </div>
+    @endguest
 @endsection
 
 @section('scripts')
