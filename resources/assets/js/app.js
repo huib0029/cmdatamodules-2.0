@@ -4,7 +4,7 @@ require('./bootstrap');
 import 'angular';
 
 // Angular laden in de laravel applicatie
-var app = angular.module('LaravelCRUD', []
+var app = angular.module('LaravelAngular', []
     , ['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
     }]);
@@ -89,7 +89,7 @@ app.controller('TaskController', ['$scope', '$http', function ($scope, $http) {
     // Task deleten
     $scope.deleteTask = function (index) {
 
-        var conf = confirm("Do you really want to delete this task?");
+        var conf = confirm("Weet je zeker dat je de taak wilt verwijderen?");
 
         if (conf === true) {
             $http.delete('task/' + $scope.tasks[index].id)

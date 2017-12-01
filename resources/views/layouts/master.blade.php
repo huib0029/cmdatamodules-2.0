@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" ng-app="LaravelCRUD">
+<html lang="{{ app()->getLocale() }}" ng-app="LaravelAngular">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

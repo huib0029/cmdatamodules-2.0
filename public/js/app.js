@@ -763,7 +763,7 @@ __webpack_require__(9);
 
 
 // Angular laden in de laravel applicatie
-var app = angular.module('LaravelCRUD', [], ['$httpProvider', function ($httpProvider) {
+var app = angular.module('LaravelAngular', [], ['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
 }]);
 
