@@ -33,7 +33,7 @@
                   <a href="{{ url('') }}"> Welkom</a>
                 </li>
 								<li class="{{ (Request::is('api') ? 'active' : '') }}">
-                  <a href="{{ url('api') }}"> API testing pagina</a>
+                  <a href="{{ url('api') }}"> API testing pagina met angularJS</a>
                 </li>
 								<li class="{{ (Request::is('angular') ? 'active' : '') }}">
                   <a href="{{ url('angular') }}"> Crud met angularJS (inloggen vereist)</a>
