@@ -5,11 +5,14 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
         $scope.api = []
         // Functie maken die een API call oproepts
         $scope.ZoekOpleidingsVarianten = function (index) {
+          // invoervelden van api.blade.php doorvoeren naar url van http get
+          var statusid  = document.getElementById('inputStatusid').value;
+          var taalid  = document.getElementById('inputTaalid').value;
           // API call naar publieke endpoint voor opleidingsvarianten
           $http({
             method: 'GET',
             dataType: "Json",
-            url: 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=&taalid='
+            url: 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=' + statusid + '&taalid=' + taalid
           }).then(function(response) {
                 // array list maken voor api blade met ng-repeat
                 $scope.apis = response.data

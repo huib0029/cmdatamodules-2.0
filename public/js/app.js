@@ -65704,11 +65704,14 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
   $scope.api = [];
   // Functie maken die een API call oproepts
   $scope.ZoekOpleidingsVarianten = function (index) {
+    // invoervelden van api.blade.php doorvoeren naar url van http get
+    var statusid = document.getElementById('inputStatusid').value;
+    var taalid = document.getElementById('inputTaalid').value;
     // API call naar publieke endpoint voor opleidingsvarianten
     $http({
       method: 'GET',
       dataType: "Json",
-      url: 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=&taalid='
+      url: 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=' + statusid + '&taalid=' + taalid
     }).then(function (response) {
       // array list maken voor api blade met ng-repeat
       $scope.apis = response.data;
@@ -65725,6 +65728,7 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
       $scope.api.academie_naam = response.data[0].academie_naam;
       $scope.api.hzopleiding_naam = response.data[0].hzopleiding_naam;
       $scope.api.taalid = response.data[0].taalid;
+      console.log(statusid + taalid);
     }).catch(function (error) {
       alert("De API functioneert niet, noteer foutcode");
       alert(error.data);
