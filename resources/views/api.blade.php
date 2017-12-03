@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
- API testing (publieke resources)
+ API testing (publieke resources, CORS tijdelijk aanzetten)
 @endsection
 
 @section('content')
