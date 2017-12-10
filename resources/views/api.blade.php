@@ -55,8 +55,8 @@
         <tbody>
           <tr ng-repeat="api in opleidingsvariantenapi">
             <td>@{{api.id}}</td>
-            <td>@{{api.inschrijvenviastudielink}}</td>
-            <td>@{{api.iscontractonderwijs}}</td>
+            <td>@{{api.inschrijvenviastudielink?"Ja":"Nee"}}</td>
+            <td>@{{api.iscontractonderwijs?"Ja":"Nee"}}</td>
             <td>@{{api.naam}}</td>
             <td>@{{api.lijstnaam}}</td>
             <td>@{{api.status_id}}</td>
