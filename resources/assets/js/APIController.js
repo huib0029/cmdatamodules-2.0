@@ -14,21 +14,8 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
             dataType: "Json",
             url: 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=' + statusid + '&taalid=' + taalid
           }).then(function(response) {
-                // array list maken voor api blade met ng-repeat
+                // array list maken voor api blade met ng-repeat en data uit array halen
                 $scope.opleidingsvariantenapi = response.data
-                // Data uit array halen
-                $scope.api.id = response.data[0].id;
-                $scope.api.inschrijvenviastudielink = response.data[0].inschrijvenviastudielink;
-                $scope.api.iscontractonderwijs = response.data[0].iscontractonderwijs;
-                $scope.api.naam = response.data[0].naam;
-                $scope.api.lijstnaam = response.data[0].lijstnaam;
-                $scope.api.status_id = response.data[0].status_id;
-                $scope.api.status_naam = response.data[0].status_naam;
-                $scope.api.kostenplaats_naam = response.data[0].kostenplaats_naam;
-                $scope.api.academie_code = response.data[0].academie_code;
-                $scope.api.academie_naam = response.data[0].academie_naam;
-                $scope.api.hzopleiding_naam = response.data[0].hzopleiding_naam;
-                $scope.api.taalid = response.data[0].taalid;
           }).catch(function(error) {
           alert("De API functioneert niet, noteer foutcode");
           alert(error.data);
@@ -44,17 +31,8 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
             dataType: "Json",
             url: 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=' + statusid + '&taalid=' + taalid
           }).then(function(response) {
-                // array list maken voor api blade met ng-repeat
+                // array list maken voor api blade met ng-repeat en data uit array halen
                 $scope.crohosapi = response.data
-                // Data uit array halen
-                $scope.api.id = response.data[0].id;
-                $scope.api.code = response.data[0].inschrijvenviastudielink;
-                $scope.api.naam = response.data[0].iscontractonderwijs;
-                $scope.api.lijstnaam = response.data[0].naam;
-                $scope.api.nominalestudieduur = response.data[0].lijstnaam;
-                $scope.api.status_id = response.data[0].status_id;
-                $scope.api.status_naam = response.data[0].status_naam;
-                $scope.api.taalid = response.data[0].kostenplaats_naam;
           }).catch(function(error) {
           alert("De API functioneert niet, noteer foutcode");
           alert(error.data);
