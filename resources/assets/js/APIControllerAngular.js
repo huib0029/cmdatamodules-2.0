@@ -16,7 +16,6 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
           }).then(function(response) {
                 // array list maken voor api blade met ng-repeat en data uit array halen
                 $scope.opleidingsvariantenapi = response.data
-
           }).catch(function(error) {
           alert("De API functioneert niet, noteer foutcode");
           alert(error.data);

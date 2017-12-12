@@ -14,18 +14,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'sub', 'name', 'email', 'picture',  'password',
-    ];
+    protected $fillable = ['sub', 'name', 'email', 'picture',  'password',];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-       'sub',  'password', 'remember_token',
-    ];
+    protected $hidden = ['sub',  'password', 'remember_token',];
     // taken worden opgeroepen van de task.php constructor/model
     public function tasks()
     {

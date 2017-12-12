@@ -35,8 +35,8 @@
 								<li class="{{ (Request::is('api') ? 'active' : '') }}">
                   <a href="{{ url('api') }}"> API testing pagina met angularJS</a>
                 </li>
-								<li class="{{ (Request::is('angular') ? 'active' : '') }}">
-                  <a href="{{ url('angular') }}"> Crud met angularJS (inloggen vereist)</a>
+								<li class="{{ (Request::is('tasks') ? 'active' : '') }}">
+                  <a href="{{ url('tasks') }}"> Crud met angularJS (inloggen vereist)</a>
                 </li>
               </ul>
 							<ul class="nav navbar-nav navbar-right">
