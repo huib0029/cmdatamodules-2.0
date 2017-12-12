@@ -11,7 +11,7 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
           // API call naar publieke endpoint voor opleidingsvarianten
           var urlapi = 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=';
           $scope.StartAPI(statusid, taalid, urlapi);
-        }
+        };
         $scope.ZoekCrohos = function (index) {
             // invoervelden van api.blade.php doorvoeren naar url van http get
             var statusid  = document.getElementById('inputStatusid_crohos').value;
@@ -19,7 +19,8 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
             // API call naar publieke endpoint voor crohos
             var urlapi = 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=';
             $scope.StartAPI(statusid, taalid, urlapi);
-        }
+        };
+        // Start API met variabelen uit bepaalde functies
         $scope.StartAPI = function (statusid, taalid, urlapi) {
             $http({
                 method: 'GET',

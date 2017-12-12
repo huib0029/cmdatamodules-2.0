@@ -65719,6 +65719,7 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
         var urlapi = 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=';
         $scope.StartAPI(statusid, taalid, urlapi);
     };
+    // Start API met variabelen uit bepaalde functies
     $scope.StartAPI = function (statusid, taalid, urlapi) {
         $http({
             method: 'GET',
