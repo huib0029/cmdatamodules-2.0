@@ -13,10 +13,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
-use Illuminate\Database\Eloquent\Model;
 // JSON berichten decoden:
 use function GuzzleHttp\json_decode;
 use InvalidArgumentException;
