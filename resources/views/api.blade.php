@@ -22,11 +22,19 @@
         <legend>Genereer opleidingsvarianten</legend>
           <div class="col-lg-2">
             <label class="control-label" for="inputSmall">Status id</label>
-            <input class="form-control input-sm" placeholder="2 (actief) of 4 (historisch)" type="text" id="inputStatusid_opleidingsvarianten">
+              <select id="inputStatusid_opleidingsvarianten" class="form-control input-sm">
+                  <option></option>
+                  <option value="2">(2) Actief</option>
+                  <option value="4">(4) Historisch</option>
+              </select>
         </div>
         <div class="col-lg-2">
           <label class="control-label" for="inputSmall">Taal id</label>
-          <input class="form-control input-sm" placeholder="1 (NL) of 2 (EN)" type="text" id="inputTaalid_opleidingsvarianten">
+            <select id="inputTaalid_opleidingsvarianten" class="form-control input-sm">
+                <option></option>
+                <option value="1">(1) NL - Nederlands</option>
+                <option value="2">(2) EN - Engels</option>
+            </select>
         </div>
     <div class="col-lg-2">
         <br>
@@ -79,11 +87,19 @@
         <legend>Genereer Crohos</legend>
           <div class="col-lg-2">
             <label class="control-label" for="inputSmall">Status id</label>
-            <input class="form-control input-sm" placeholder="2 (actief) of 4 (historisch)" type="text" id="inputStatusid_crohos">
+              <select id="inputStatusid_crohos" class="form-control input-sm">
+                  <option></option>
+                  <option value="2">(2) Actief</option>
+                  <option value="4">(4) Historisch</option>
+              </select>
         </div>
         <div class="col-lg-2">
           <label class="control-label" for="inputSmall">Taal id</label>
-          <input class="form-control input-sm" placeholder="1 (NL) of 2 (EN)" type="text" id="inputTaalid_crohos">
+            <select id="inputTaalid_crohos" class="form-control input-sm">
+                <option></option>
+                <option value="1">(1) NL - Nederlands</option>
+                <option value="2">(2) EN - Engels</option>
+            </select>
         </div>
     <div class="col-lg-2">
         <br>

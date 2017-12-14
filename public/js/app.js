@@ -66047,7 +66047,6 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
             if (error.data.errors.name) {
                 $scope.errors.push(error.data.errors.name[0]);
             }
-
             if (error.data.errors.description) {
                 $scope.errors.push(error.data.errors.description[0]);
             }
