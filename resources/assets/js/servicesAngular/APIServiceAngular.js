@@ -1,6 +1,7 @@
   // API controller voor de API's
 angular.module('LaravelAngular').service('APIservice', ['$rootScope', '$http', function ($rootScope, $http) {
 
+        // API service definieren
         var APIservice = {};
         // Start API met variabelen uit bepaalde functies
         APIservice.StartAPI = function (statusid, taalid, urlapi) {
@@ -30,11 +31,7 @@ angular.module('LaravelAngular').service('APIservice', ['$rootScope', '$http', f
                     $rootScope.errors.push(error.data.errors.description[0]);
                 }
             };
-        }
+        };
+        // API service definitie terugsturen naar externe services/controllers etc.
         return APIservice;
-
-
-
-
-
   }]);

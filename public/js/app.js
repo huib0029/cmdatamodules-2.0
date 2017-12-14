@@ -767,7 +767,7 @@ __webpack_require__(9);
 angular.module('LaravelAngular', [], ['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
 }]);
-// laad controllers in aparte js files voor overzichtelijkheid
+// laad services en controllers in aparte js files voor overzichtelijkheid
 __webpack_require__(37);
 __webpack_require__(38);
 __webpack_require__(39);
@@ -65609,6 +65609,7 @@ $provide.value("$locale", {
 // API controller voor de API's
 angular.module('LaravelAngular').service('APIservice', ['$rootScope', '$http', function ($rootScope, $http) {
 
+    // API service definieren
     var APIservice = {};
     // Start API met variabelen uit bepaalde functies
     APIservice.StartAPI = function (statusid, taalid, urlapi) {
@@ -65641,6 +65642,7 @@ angular.module('LaravelAngular').service('APIservice', ['$rootScope', '$http', f
             }
         };
     };
+    // API service definitie terugsturen naar externe services/controllers etc.
     return APIservice;
 }]);
 
