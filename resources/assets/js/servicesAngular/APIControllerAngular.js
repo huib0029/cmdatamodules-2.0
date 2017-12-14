@@ -34,9 +34,21 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
                 if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=') {
                     $scope.opleidingsvariantenapi = response.data }
             }).catch(function(error) {
-                alert("De API functioneert niet, noteer foutcode");
+                alert("De API functioneert niet, noteer foutcode of kijk in de console log (F12)");
                 alert(error.data);
+                $scope.recordErrors(error);
             });
+            // laat error code tevens in console.log zien
+            $scope.recordErrors = function (error) {
+                $scope.errors = [];
+                if (error.data.errors.name) {
+                    $scope.errors.push(error.data.errors.name[0]);
+                }
+
+                if (error.data.errors.description) {
+                    $scope.errors.push(error.data.errors.description[0]);
+                }
+            };
         }
 
 
