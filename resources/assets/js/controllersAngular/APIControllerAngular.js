@@ -10,16 +10,26 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
           var taalid  = document.getElementById('inputTaalid_opleidingsvarianten').value;
           // API call naar publieke endpoint voor opleidingsvarianten
           var urlapi = 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=';
-          $scope.StartAPI(statusid, taalid, urlapi);
+          // valideer eerst voordat de API gestart wordt
+          $scope.ValideerStatusEnTaalidEnStartAPI(statusid, taalid, urlapi);
         };
         $scope.ZoekCrohos = function (index) {
             // invoervelden van api.blade.php doorvoeren naar url van http get
             var statusid  = document.getElementById('inputStatusid_crohos').value;
             var taalid  = document.getElementById('inputTaalid_crohos').value;
-            // API call naar publieke endpoint voor crohos
+            // API call url naar publieke endpoint voor crohos
             var urlapi = 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=';
-            $scope.StartAPI(statusid, taalid, urlapi);
+            // valideer eerst voordat de API gestart wordt
+            $scope.ValideerStatusEnTaalidEnStartAPI(statusid, taalid, urlapi);
         };
+        $scope.ValideerStatusEnTaalidEnStartAPI = function (statusid, taalid, urlapi) {
+            if (statusid === '' || statusid === '2' || statusid === '4' && (taalid === '' || taalid === '1' || taalid === '2') ) {
+                $scope.StartAPI(statusid, taalid, urlapi);
+            }
+            else {
+                alert('API werkt niet, neem contact op met de systeembeheerder');
+            }
+        }
         // Start API met variabelen uit bepaalde functies
         $scope.StartAPI = function (statusid, taalid, urlapi) {
             $http({
