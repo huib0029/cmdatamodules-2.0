@@ -23,11 +23,12 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
             $scope.ValideerStatusEnTaalidEnStartAPI(statusid, taalid, urlapi);
         };
         $scope.ValideerStatusEnTaalidEnStartAPI = function (statusid, taalid, urlapi) {
+            // Als statusid niets, 2 of 4 bevat en/of taalid niets, 1 of 2 draai de StartAPI script
             if (statusid === '' || statusid === '2' || statusid === '4' && (taalid === '' || taalid === '1' || taalid === '2') ) {
                 $scope.StartAPI(statusid, taalid, urlapi);
             }
             else {
-                alert('API werkt niet, neem contact op met de systeembeheerder');
+                alert('API functioneerd niet, neem contact op met de systeembeheerder');
             }
         }
         // Start API met variabelen uit bepaalde functies
