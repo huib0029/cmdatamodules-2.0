@@ -9,6 +9,7 @@ angular.module('LaravelAngular', []
     , ['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.headers.post['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content');
     }]);
-// laad controllers in aparte js files voor overzichtelijkheid
+// laad services en controllers in aparte js files voor overzichtelijkheid
+require('./servicesAngular/APIServiceAngular');
 require('./controllersAngular/TaskControllerAngular');
 require('./controllersAngular/APIControllerAngular');

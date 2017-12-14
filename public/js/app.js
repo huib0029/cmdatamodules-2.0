@@ -746,7 +746,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(40);
 
 
 /***/ }),
@@ -770,6 +770,7 @@ angular.module('LaravelAngular', [], ['$httpProvider', function ($httpProvider) 
 // laad controllers in aparte js files voor overzichtelijkheid
 __webpack_require__(37);
 __webpack_require__(38);
+__webpack_require__(39);
 
 /***/ }),
 /* 9 */
@@ -65605,6 +65606,48 @@ $provide.value("$locale", {
 /* 37 */
 /***/ (function(module, exports) {
 
+// API controller voor de API's
+angular.module('LaravelAngular').service('APIservice', ['$rootScope', '$http', function ($rootScope, $http) {
+
+    var APIservice = {};
+    // Start API met variabelen uit bepaalde functies
+    APIservice.StartAPI = function (statusid, taalid, urlapi) {
+        $http({
+            method: 'GET',
+            dataType: "Json",
+            url: urlapi + statusid + '&taalid=' + taalid
+        }).then(function (response) {
+            // array list maken voor api blade met ng-repeat en data uit array halen en in scope plaatsten
+            // op basis van geldende url
+            if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=') {
+                $rootScope.crohosapi = response.data;
+            }
+            if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=') {
+                $rootScope.opleidingsvariantenapi = response.data;
+            }
+        }).catch(function (error) {
+            alert("De API functioneert niet, noteer foutcode of kijk in de console log (F12)");
+            alert(error.data);
+            $rootScope.recordErrors(error);
+        });
+        // laat error code tevens in console.log zien
+        $rootScope.recordErrors = function (error) {
+            $rootScope.errors = [];
+            if (error.data.errors.name) {
+                $rootScope.errors.push(error.data.errors.name[0]);
+            }
+            if (error.data.errors.description) {
+                $rootScope.errors.push(error.data.errors.description[0]);
+            }
+        };
+    };
+    return APIservice;
+}]);
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
 // taken controller:
 angular.module('LaravelAngular').controller('TaskController', ['$scope', '$http', function ($scope, $http) {
 
@@ -65694,11 +65737,11 @@ angular.module('LaravelAngular').controller('TaskController', ['$scope', '$http'
 }]);
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 // API controller voor de API's
-angular.module('LaravelAngular').controller('APIController', ['$scope', '$http', function ($scope, $http) {
+angular.module('LaravelAngular').controller('APIController', ['$scope', '$http', 'APIservice', function ($scope, $http, APIservice) {
 
     // Scope instellen voor webpagina
     $scope.api = [];
@@ -65722,47 +65765,18 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
         $scope.ValideerStatusEnTaalidEnStartAPI(statusid, taalid, urlapi);
     };
     $scope.ValideerStatusEnTaalidEnStartAPI = function (statusid, taalid, urlapi) {
+        // Als statusid niets, 2 of 4 bevat en/of taalid niets, 1 of 2 draai de StartAPI script
         if (statusid === '' || statusid === '2' || statusid === '4' && (taalid === '' || taalid === '1' || taalid === '2')) {
-            $scope.StartAPI(statusid, taalid, urlapi);
+            // Start API met variabelen uit bepaalde functies
+            APIservice.StartAPI(statusid, taalid, urlapi);
         } else {
-            alert('API werkt niet, neem contact op met de systeembeheerder');
+            alert('API functioneerd niet, neem contact op met de systeembeheerder');
         }
-    };
-    // Start API met variabelen uit bepaalde functies
-    $scope.StartAPI = function (statusid, taalid, urlapi) {
-        $http({
-            method: 'GET',
-            dataType: "Json",
-            url: urlapi + statusid + '&taalid=' + taalid
-        }).then(function (response) {
-            // array list maken voor api blade met ng-repeat en data uit array halen en in scope plaatsten
-            // op basis van geldende url
-            if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=') {
-                $scope.crohosapi = response.data;
-            }
-            if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=') {
-                $scope.opleidingsvariantenapi = response.data;
-            }
-        }).catch(function (error) {
-            alert("De API functioneert niet, noteer foutcode of kijk in de console log (F12)");
-            alert(error.data);
-            $scope.recordErrors(error);
-        });
-        // laat error code tevens in console.log zien
-        $scope.recordErrors = function (error) {
-            $scope.errors = [];
-            if (error.data.errors.name) {
-                $scope.errors.push(error.data.errors.name[0]);
-            }
-            if (error.data.errors.description) {
-                $scope.errors.push(error.data.errors.description[0]);
-            }
-        };
     };
 }]);
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

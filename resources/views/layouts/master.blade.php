@@ -38,6 +38,7 @@
 								<li class="{{ (Request::is('tasks') ? 'active' : '') }}">
                   <a href="{{ url('tasks') }}"> Crud met angularJS (inloggen vereist)</a>
                 </li>
+                  </li>
               </ul>
 							<ul class="nav navbar-nav navbar-right">
 									<!-- Authentication Links -->
