@@ -23,7 +23,7 @@
           <div class="col-lg-2">
             <label class="control-label" for="inputSmall">Status id</label>
               <select id="inputStatusid_opleidingsvarianten" class="form-control input-sm">
-                  <option></option>
+                  <option value="">Alle status id's</option>
                   <option value="2">(2) Actief</option>
                   <option value="4">(4) Historisch</option>
               </select>
@@ -31,7 +31,7 @@
         <div class="col-lg-2">
           <label class="control-label" for="inputSmall">Taal id</label>
             <select id="inputTaalid_opleidingsvarianten" class="form-control input-sm">
-                <option></option>
+                <option value="">Alle taal id's</option>
                 <option value="1">(1) NL - Nederlands</option>
                 <option value="2">(2) EN - Engels</option>
             </select>
@@ -88,7 +88,7 @@
           <div class="col-lg-2">
             <label class="control-label" for="inputSmall">Status id</label>
               <select id="inputStatusid_crohos" class="form-control input-sm">
-                  <option></option>
+                  <option value="">Alle status id's</option>
                   <option value="2">(2) Actief</option>
                   <option value="4">(4) Historisch</option>
               </select>
@@ -96,7 +96,7 @@
         <div class="col-lg-2">
           <label class="control-label" for="inputSmall">Taal id</label>
             <select id="inputTaalid_crohos" class="form-control input-sm">
-                <option></option>
+                <option value="">Alle taal id's</option>
                 <option value="1">(1) NL - Nederlands</option>
                 <option value="2">(2) EN - Engels</option>
             </select>

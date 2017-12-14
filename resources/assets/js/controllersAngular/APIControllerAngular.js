@@ -30,7 +30,7 @@ angular.module('LaravelAngular').controller('APIController', ['$scope', '$http',
                 // array list maken voor api blade met ng-repeat en data uit array halen en in scope plaatsten
                 // op basis van geldende url
                 if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/crohos?statusid=') {
-                $scope.crohosapi = response.data }
+                    $scope.crohosapi = response.data }
                 if (urlapi === 'https://apps.hz.nl/Services/algemeen/v1/opleidingsvarianten?statusid=') {
                     $scope.opleidingsvariantenapi = response.data }
             }).catch(function(error) {
