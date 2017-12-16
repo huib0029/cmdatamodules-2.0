@@ -4,15 +4,12 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Task;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TaskTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     // Refreshdata aanzetten om steeds de database te refreshen na gebruik
     use DatabaseMigrations;
     // Variabelen om her te gebruiken
@@ -36,7 +33,35 @@ class TaskTest extends TestCase
     {
         // test of de database tabel
         $this->assertDatabaseMissing($this::$TABLE_NAME, [
-            'id'    => $this::$ID1,
+            'id' => $this::$ID1,
         ]);
+    }
+    // Negatieve test, kijk of er zonder een inlog de task pagina te bereiken is
+    public function test_of_task_zonder_inlog_te_bereiken_is()
+    {
+        Auth::logout();
+        $response = $this->call('GET', '/tasks');
+        $this->assertContains('Je moet inloggen om de pagina te kunnen bekijken', $response->getContent());
+    }
+    // Maak een taak d.m.v. een gebruiker
+    public function test_of_een_taak_gemaakt_kan_worden()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar'])
+            ->get('/');
+
+        $response = $this->json('POST', '/task', [
+            'name' => 'Test',
+            'description' => 'Test',
+            'user_id' => $this::$ID1,
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'created' => true,
+            ]);
     }
 }

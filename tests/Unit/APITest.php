@@ -7,12 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class APITest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    // Testen of de crohos API data op kan halen
+    public function test_of_crohos_api_beschikbaar_is()
     {
         $this->assertTrue(true);
     }
