@@ -34,14 +34,68 @@ class UserTest extends TestCase
             'remember_token' => $user->remember_token
         ]);
     }
-    // Test of naam nodig is in de Users tabel
-    public function test_of_naam_nodig_is()
+    // Negatieve test: Test of naam verplicht is in de Users tabel
+    public function test_of_naam_verplicht_is()
     {
         try {
             factory(User::class)->create(['name' => null]);
         } catch(\Exception $e) {
             $this->assertTrue(true);
         }
+    }
+    // Negatieve test: Test of e-mail verplicht is in de Users tabel
+    public function test_of_mail_verplicht_is()
+    {
+        try {
+            factory(User::class)->create(['email' => null]);
+        } catch(\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    // Negatieve test: Test of Wachtwoord verplicht is in de Users tabel
+    public function test_of_wachtwoord_verplicht_is()
+    {
+        try {
+            factory(User::class)->create(['password' => null]);
+        } catch(\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    // Negatieve test: Test of een unieke subscriber niet twee keer aangemaakt kan worden in de Users tabel
+    public function test_of_sub_uniek_is()
+    {
+        try {
+            factory(User::class)->create(['sub' => 1]);
+            factory(User::class)->create(['sub' => 1]);
+        } catch(\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    // Negatieve test: Test of een unieke e-mail niet twee keer aangemaakt kan worden in de Users tabel
+    public function test_of_email_uniek_is()
+    {
+        try {
+            factory(User::class)->create(['email' => 'test@test.nl']);
+            factory(User::class)->create(['email' => 'test@test.nl']);
+        } catch(\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
+    // Test of een subscriber nullable in User tabel mag zijn
+    public function test_of_sub_nullable_is()
+    {
+        factory(User::class)->create(['sub' => null]);
+        $this->assertDatabaseHas($this::$TABLE_NAME, [
+            'sub' => null,
+        ]);
+    }
+    // Test of een picture nullable in User tabel mag zijn
+    public function test_of_picture_nullable_is()
+    {
+        factory(User::class)->create(['picture' => null]);
+        $this->assertDatabaseHas($this::$TABLE_NAME, [
+            'picture' => null,
+        ]);
     }
 
     // delete gebeurd na iedere functie automatisch tenzij handmatig uit gezet (use Databasemigrations), toch belangrijk om te testen
