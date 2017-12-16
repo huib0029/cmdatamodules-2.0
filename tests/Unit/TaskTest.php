@@ -13,7 +13,7 @@ class TaskTest extends TestCase
      *
      * @return void
      */
-    // Migratie aanzetten om te schrijven naar de database
+    // Refreshdata aanzetten om steeds de database te refreshen na gebruik
     use DatabaseMigrations;
     // Variabelen om her te gebruiken
     private static $TABLE_NAME = 'tasks';
