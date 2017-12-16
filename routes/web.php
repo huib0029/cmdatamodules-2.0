@@ -26,7 +26,7 @@ Auth::routes();
 // name -> route naar index
 Route::get('/home', 'HomeController@index')->name('index');
 
-// Alles van de task pagina wordt geladen naar de taskcontroller
+// Alles methoden van de task pagina wordt geladen naar de taskcontroller
 Route::resource('/task', 'TaskController');
 
 // Redirecten naar login pagina van OpenIDConnect

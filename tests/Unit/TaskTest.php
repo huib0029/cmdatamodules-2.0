@@ -31,4 +31,12 @@ class TaskTest extends TestCase
             'description' => $task->description,
         ]);
     }
+    // delete gebeurd na iedere functie automatisch tenzij handmatig uit gezet (use Refreshdatabase), toch belangrijk om te testen
+    public function test_of_task_verwijdert_kan_worden()
+    {
+        // test of de database tabel
+        $this->assertDatabaseMissing($this::$TABLE_NAME, [
+            'id'    => $this::$ID1,
+        ]);
+    }
 }
