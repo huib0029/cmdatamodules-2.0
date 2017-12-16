@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Task;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TaskTest extends TestCase
@@ -38,15 +37,8 @@ class TaskTest extends TestCase
         ]);
     }
 
-    // Negatieve test, kijk of er zonder een inlog de task pagina te bereiken is
-    public function test_of_task_zonder_inlog_te_bereiken_is()
-    {
-        Auth::logout();
-        $response = $this->call('GET', '/tasks');
-        $this->assertContains('Je moet inloggen om de pagina te kunnen bekijken', $response->getContent());
-    }
-    // Negatieve test, kijk of er zonder een inlog een taak aangemaakt kan worden
-    public function test_of_task_zonder_inlog_een_taak_te_maken_is()
+    // Negatieve test, test of er zonder een inlog een taak aangemaakt kan worden
+    public function test_of_zonder_inlog_geen_taak_te_maken_is()
     {
         $response = $this->json('POST', '/task', [
             'name' => 'Test',

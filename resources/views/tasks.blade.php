@@ -18,7 +18,7 @@ Je moet inloggen om de pagina te kunnen bekijken
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <button class="btn btn-primary btn-xs pull-right" ng-click="initTask()">Taak toevoegen</button>
-                        Task
+                        Taken
                     </div>
 
                     <div class="panel-body">
