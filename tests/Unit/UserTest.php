@@ -106,4 +106,52 @@ class UserTest extends TestCase
             'id'    => $this::$ID1,
         ]);
     }
+    // Test of een user aangemaakt kan worden
+    public function test_of_user_aangemaakt_kan_worden()
+    {
+        $response = $this->json('POST', '/register', [
+            'name' => 'Test',
+            'email' => 'Test@test.nl',
+            'password' => 'Test123',
+            'password_confirmation' => 'Test123'
+        ]);
+
+        $response
+            ->assertStatus(302);
+    }
+    // Test of een user kan inloggen
+    public function test_of_user_kan_inloggen()
+    {
+        $this->json('POST', '/register', [
+            'name' => 'Test',
+            'email' => 'Test@test.nl',
+            'password' => 'Test123',
+            'password_confirmation' => 'Test123'
+        ]);
+
+        $response = $this->json('POST', '/login', [
+            'email' => 'Test@test.nl',
+            'password' => 'Test123',
+        ]);
+
+        $response
+            ->assertStatus(302);
+    }
+
+    // Test of een user kan uitloggen
+    public function test_of_user_kan_uitloggen()
+    {
+        $this->json('POST', '/register', [
+            'name' => 'Test',
+            'email' => 'Test@test.nl',
+            'password' => 'Test123',
+            'password_confirmation' => 'Test123'
+        ]);
+
+        $response = $this->json('POST', '/logout');
+
+        $response
+            ->assertStatus(302);
+    }
+
 }
