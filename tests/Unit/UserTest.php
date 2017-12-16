@@ -19,7 +19,7 @@ class UserTest extends TestCase
     private static $TABLE_NAME = 'users';
     private static $ID1 = 1;
 
-    public function test_of_user_aangemaakt_kan_worden()
+    public function test_of_user_aangemaakt_kan_worden_database()
     {
         // Maak user aan d.m.v. de factory (factories/UserFactory)
         $user = factory(User::class)->create();
@@ -35,7 +35,7 @@ class UserTest extends TestCase
         ]);
     }
     // Negatieve test: Test of naam verplicht is in de Users tabel
-    public function test_of_naam_verplicht_is()
+    public function test_of_naam_verplicht_is_database()
     {
         try {
             factory(User::class)->create(['name' => null]);
@@ -44,7 +44,7 @@ class UserTest extends TestCase
         }
     }
     // Negatieve test: Test of e-mail verplicht is in de Users tabel
-    public function test_of_mail_verplicht_is()
+    public function test_of_mail_verplicht_is_database()
     {
         try {
             factory(User::class)->create(['email' => null]);
@@ -53,7 +53,7 @@ class UserTest extends TestCase
         }
     }
     // Negatieve test: Test of Wachtwoord verplicht is in de Users tabel
-    public function test_of_wachtwoord_verplicht_is()
+    public function test_of_wachtwoord_verplicht_is_database()
     {
         try {
             factory(User::class)->create(['password' => null]);
@@ -62,7 +62,7 @@ class UserTest extends TestCase
         }
     }
     // Negatieve test: Test of een unieke subscriber niet twee keer aangemaakt kan worden in de Users tabel
-    public function test_of_sub_uniek_is()
+    public function test_of_sub_uniek_is_database()
     {
         try {
             factory(User::class)->create(['sub' => 1]);
@@ -72,7 +72,7 @@ class UserTest extends TestCase
         }
     }
     // Negatieve test: Test of een unieke e-mail niet twee keer aangemaakt kan worden in de Users tabel
-    public function test_of_email_uniek_is()
+    public function test_of_email_uniek_is_database()
     {
         try {
             factory(User::class)->create(['email' => 'test@test.nl']);
@@ -82,7 +82,7 @@ class UserTest extends TestCase
         }
     }
     // Test of een subscriber nullable in User tabel mag zijn
-    public function test_of_sub_nullable_is()
+    public function test_of_sub_nullable_is_database()
     {
         factory(User::class)->create(['sub' => null]);
         $this->assertDatabaseHas($this::$TABLE_NAME, [
@@ -90,7 +90,7 @@ class UserTest extends TestCase
         ]);
     }
     // Test of een picture nullable in User tabel mag zijn
-    public function test_of_picture_nullable_is()
+    public function test_of_picture_nullable_is_database()
     {
         factory(User::class)->create(['picture' => null]);
         $this->assertDatabaseHas($this::$TABLE_NAME, [
@@ -99,7 +99,7 @@ class UserTest extends TestCase
     }
 
     // delete gebeurd na iedere functie automatisch tenzij handmatig uit gezet (use Refreshdatabase), toch belangrijk om te testen
-    public function test_of_user_verwijdert_kan_worden()
+    public function test_of_user_verwijdert_kan_worden_database()
     {
         // test of de database tabel
         $this->assertDatabaseMissing($this::$TABLE_NAME, [
