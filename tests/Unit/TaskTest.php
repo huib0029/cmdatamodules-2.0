@@ -48,9 +48,7 @@ class TaskTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->actingAs($user)
-            ->withSession(['foo' => 'bar'])
-            ->get('/');
+        $this->actingAs($user);
 
         $response = $this->json('POST', '/task', [
             'name' => 'Test',
@@ -61,7 +59,7 @@ class TaskTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'created' => true,
+                'message' => 'Success',
             ]);
     }
 }
