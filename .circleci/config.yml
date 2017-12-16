@@ -37,5 +37,6 @@ jobs:
 
       # run tests!
       - run: sudo apt-get install -y libsqlite3-dev
+      - run: cp .env.circleci .env
       - run: php artisan key:generate
       - run: vendor/bin/phpunit
