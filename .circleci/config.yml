@@ -28,7 +28,7 @@ jobs:
       - run: composer self-update
       - run: php --version
       - run: composer --version
-      - run: composer install --no-interaction
+      - run: composer install -n --prefer-dist --ignore-platform-reqs
 
       - save_cache:
           paths:
