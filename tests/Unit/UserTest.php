@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
@@ -13,8 +13,8 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    // Migratie aanzetten om te schrijven naar de database
-    use DatabaseMigrations;
+    // Refreshdata aanzetten om steeds de database te refreshen na gebruik
+    use RefreshDatabase;
     // Variabelen om her te gebruiken
     private static $TABLE_NAME = 'users';
     private static $ID1 = 1;
@@ -98,7 +98,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    // delete gebeurd na iedere functie automatisch tenzij handmatig uit gezet (use Databasemigrations), toch belangrijk om te testen
+    // delete gebeurd na iedere functie automatisch tenzij handmatig uit gezet (use Refreshdatabase), toch belangrijk om te testen
     public function test_of_user_verwijdert_kan_worden()
     {
         // test of de database tabel

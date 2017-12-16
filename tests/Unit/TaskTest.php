@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TaskTest extends TestCase
 {
@@ -12,8 +12,11 @@ class TaskTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
+    // Migratie aanzetten om te schrijven naar de database
+    use DatabaseMigrations;
+    // Variabelen om her te gebruiken
+    private static $TABLE_NAME = 'tasks';
+    private static $ID1 = 1;
+
+
 }
