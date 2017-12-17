@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// API maakt gebruik van een Angular controller en services (zie resources/assets/js/app.js)
 Route::get('api', function () {
     return view('api');
 });
