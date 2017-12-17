@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('api', function () {
     return view('api');
 });
+// De Tasks pagina maakt gebruik van een combinatie van Angular en Laravel
 Route::get('tasks', function () {
     return view('tasks');
 });
