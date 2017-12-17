@@ -10,13 +10,38 @@ class ProjectsTableSeeder extends Seeder
      *
      * @return void
      */
+    // Seed om zoekmodule te testen
     public function run()
     {
         DB::table('projects')->insert([
-            'name' => 'project datawerken',
-            'competenties' => 'SAN2a, SON2a, SAD, GAN1, SRE1a, SRE1b',
-            'projectgrootte' => 12,
-            'leverancier' => 'test',
+            'name' => 'Veiligheidsregio Zeeland',
+            'competenties' => 'SAN1a, SON2a',
+            'projectgrootte' => 10,
+            'leverancier' => 'Veiligheidsregio Zeeland',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'Data Science',
+            'competenties' => 'SON2b, GAN1',
+            'projectgrootte' => 20,
+            'leverancier' => 'Rijkswaterstaat',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'Data Science',
+            'competenties' => 'SON2b, GAN1',
+            'projectgrootte' => 20,
+            'leverancier' => 'Profit',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'VR omgeving bouwen',
+            'competenties' => 'SRE3a, SAD',
+            'projectgrootte' => 15,
+            'leverancier' => 'Damen',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'Competentiemanagement tool ',
+            'competenties' => 'GRE1, SAN2a',
+            'projectgrootte' => 30,
+            'leverancier' => 'HBO-ICT',
         ]);
     }
 }

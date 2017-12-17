@@ -9,6 +9,19 @@
 @endsection
 
 @section('content')
+    <div class="col-lg-4">
+        <div class="form-group">
+        <div class="input-group input-group-md">
+            <div class="icon-addon addon-md">
+                <input type="text" placeholder="Zoek naar projecten" class="form-control" @change="search()" v-model="query">
+            </div>
+            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" @click="search()" v-if="!loading">Zoeken</button>
+                            <button class="btn btn-default" type="button" disabled="disabled" v-if="loading">Zoeken...</button>
+                        </span>
+        </div>
+    </div>
+    </div>
     @if (count($projects) > 0)
         <table class="table table-striped table-hover small table-responsive">
             <thead>
@@ -22,8 +35,7 @@
             </thead>
             <tbody>
             @foreach ($projects as $project)
-                <tr class="row-link" style="cursor: pointer;"
-                    data-href="{{action('ProjectsController@index', ['id' => $project->id]) }}">
+                <tr>
                     <td class="table-text">{{ $project->id }}</td>
                     <td class="table-text">{{ $project->name }}</td>
                     <td class="table-text">{{ $project->competenties }}</td>
