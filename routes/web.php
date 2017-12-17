@@ -24,16 +24,20 @@ Route::get('tasks', function () {
     return view('tasks');
 });
 
+Route::get('search', function () {
+    return view('search');
+});
+
 Auth::routes();
 
 // name -> route naar index
-Route::get('/home', 'HomeController@index')->name('index');
+Route::get('home', 'HomeController@index')->name('index');
 
 // Alles methoden van de task pagina wordt geladen naar de taskcontroller
-Route::resource('/task', 'TaskController');
+Route::resource('task', 'TaskController');
 
 // Redirecten naar login pagina van OpenIDConnect
 Route::get('openidconnect', 'Controller@openlogin');
 
 // callback pagina aangemaakt in web URL voor OpenIDConnect
-Route::get('/callback', 'Controller@callback')->name('callback');
+Route::get('callback', 'Controller@callback')->name('callback');
