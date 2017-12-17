@@ -38,8 +38,8 @@
 								<li class="{{ (Request::is('tasks') ? 'active' : '') }}">
                   <a href="{{ url('tasks') }}"> Crud met angularJS (inloggen vereist)</a>
                 </li>
-                  <li class="{{ (Request::is('search') ? 'active' : '') }}">
-                      <a href="{{ url('search') }}"> Zoekpagina projecten</a>
+                  <li class="{{ (Request::is('projects') ? 'active' : '') }}">
+                      <a href="{{ url('projects') }}"> Zoekpagina projecten</a>
                   </li>
                   </li>
               </ul>

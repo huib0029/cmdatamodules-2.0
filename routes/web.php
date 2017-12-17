@@ -23,17 +23,15 @@ Route::get('api', function () {
 Route::get('tasks', function () {
     return view('tasks');
 });
-
-Route::get('search', function () {
-    return view('search');
-});
+// Alles methoden of get requests van de projects pagina wordt geladen naar de taskcontroller
+Route::resource('projects', 'ProjectsController');
 
 Auth::routes();
 
 // name -> route naar index
 Route::get('home', 'HomeController@index')->name('index');
 
-// Alles methoden van de task pagina wordt geladen naar de taskcontroller
+// Alles methoden of get requests van de task pagina wordt geladen naar de taskcontroller
 Route::resource('task', 'TaskController');
 
 // Redirecten naar login pagina van OpenIDConnect
