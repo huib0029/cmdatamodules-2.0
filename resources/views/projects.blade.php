@@ -9,20 +9,37 @@
 @endsection
 
 @section('content')
+    <div class="container-fluid" ng-controller="SearchController">
     <div class="col-lg-4">
         <div class="form-group">
         <div class="input-group input-group-md">
             <div class="icon-addon addon-md">
-                <input type="text" placeholder="Zoek naar projecten" class="form-control" @change="search()" v-model="query">
+                <input type="text" placeholder="Zoek naar projecten" class="form-control" ng-model="query">
             </div>
             <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" @click="search()" v-if="!loading">Zoeken</button>
-                            <button class="btn btn-default" type="button" disabled="disabled" v-if="loading">Zoeken...</button>
-                        </span>
+                            <button class="btn btn-default" type="button" ng-click="ZoekInProjecten()" >Zoeken</button>
+                            <button class="btn btn-default" type="button" disabled="disabled" ng-if="laden">Zoeken...</button>
+            </span>
         </div>
     </div>
+        @{{ error }}
     </div>
-    @if (count($projects) > 0)
+        <div ng-init="item = {projects: ''}">
+            <div ng-if="!item.projects">
+            <table class="table table-striped table-hover small table-responsive">
+                <tbody>
+                    <tr ng-repeat="project in projects">
+                        <td class="table-text">@{{ project.id }}</td>
+                        <td class="table-text">@{{ project.name }}</td>
+                        <td class="table-text">@{{ project.competenties }}</td>
+                        <td class="table-text">@{{ project.projectgrootte }}</td>
+                        <td class="table-text">@{{ project.leverancier }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+        @if (count($projects) > 0)
         <table class="table table-striped table-hover small table-responsive">
             <thead>
                 <tr>
@@ -48,6 +65,7 @@
     @else
     Er is geen projecten data
     @endif
+    </div>
 @endsection
 
 @section('scripts')

@@ -13,3 +13,4 @@ angular.module('LaravelAngular', []
 require('./servicesAngular/APIServiceAngular');
 require('./controllersAngular/TaskControllerAngular');
 require('./controllersAngular/APIControllerAngular');
+require('./controllersAngular/SearchControllerAngular');
