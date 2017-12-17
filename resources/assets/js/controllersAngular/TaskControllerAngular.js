@@ -14,7 +14,7 @@ angular.module('LaravelAngular').controller('TaskController', ['$scope', '$http'
         $scope.loadTasks();
 
         $scope.errors = [];
-
+        // variabelen van de scope task
       $scope.task = {
           name: '',
           description: ''
