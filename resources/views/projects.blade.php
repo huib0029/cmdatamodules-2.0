@@ -23,7 +23,7 @@
             <tbody>
             @foreach ($projects as $project)
                 <tr class="row-link" style="cursor: pointer;"
-                    data-href="{{action('ProjectsController@show', ['id' => $project->id]) }}">
+                    data-href="{{action('ProjectsController@index', ['id' => $project->id]) }}">
                     <td class="table-text">{{ $project->id }}</td>
                     <td class="table-text">{{ $project->name }}</td>
                     <td class="table-text">{{ $project->competenties }}</td>
@@ -33,6 +33,8 @@
             @endforeach
             </tbody>
         </table>
+    @else
+    Er is geen projecten data
     @endif
 @endsection
 
