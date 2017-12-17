@@ -49,6 +49,30 @@ class TaskTest extends TestCase
         $response
             ->assertStatus(401);
     }
+    // Negatieve test, test of er zonder een inlog een taak gewijzigd kan worden
+    public function test_of_zonder_inlog_een_taak_gewijzigd_kan_worden()
+    {
+        $response = $this->json('PATCH', '/task/1', [
+            'name' => 'Test2',
+            'description' => 'Test2',
+            'user_id' => $this::$ID1,
+        ]);
+
+        $response
+            ->assertStatus(401);
+    }
+    // Negatieve test, test of er zonder een inlog een taak verwijderd kan worden
+    public function test_of_zonder_inlog_een_taak_verwijderd_kan_worden()
+    {
+        $response = $this->json('DELETE', '/task/1', [
+            'name' => 'Test2',
+            'description' => 'Test2',
+            'user_id' => $this::$ID1,
+        ]);
+
+        $response
+            ->assertStatus(401);
+    }
 
     // Maak een taak d.m.v. een gebruiker
     public function test_of_een_taak_gemaakt_kan_worden()

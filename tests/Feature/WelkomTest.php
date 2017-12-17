@@ -7,11 +7,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WelkomTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     // Test of de welkomstpagina bereikbaar is
     public function test_of_welkomstpagina_bereikbaar_is()
     {
@@ -22,6 +17,6 @@ class WelkomTest extends TestCase
     public function test_of_welkomstpagina_juist_te_zien_is()
     {
         $response = $this->call('GET', '/');
-        $this->assertContains('Dit is de pagina titel van de header', $response->getContent());
+        $this->assertContains('panel-body', $response->getContent());
     }
 }
